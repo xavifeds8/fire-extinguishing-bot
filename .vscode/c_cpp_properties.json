@@ -530,6 +530,23 @@
                 "__ATOMIC_RELEASE=3",
                 "__BUILTIN_AVR_FMUL=1"
             ]
+        },
+        {
+            "name": "Servo",
+            "compilerPath": "C:\\MinGW\\bin\\gcc.exe",
+            "compilerArgs": [],
+            "intelliSenseMode": "windows-gcc-x86",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "forcedInclude": [],
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14",
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ]
         }
     ]
 }

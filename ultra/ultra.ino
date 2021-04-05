@@ -26,7 +26,13 @@ void loop() {
   Serial.print("in, ");
   Serial.println();
   delay(100);
-
+  if(inches>10){
+    move_base_fwd();
+  }
+  else{
+    move_base_left();
+  }
+  
 }
   
 
@@ -88,4 +94,8 @@ void move_base_right(){
   set_clockwise_wheel_2(HIGH);
   set_speed_wheel_1(200);
   set_speed_wheel_2(200);
+}
+
+void search_for_path(){
+
 }
