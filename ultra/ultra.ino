@@ -31,18 +31,6 @@ void loop() {
   Serial.print("in, ");
   Serial.println();
   delay(100);
-  if(inches > 10){
-    set_clockwise_wheel_1(HIGH);
-    set_clockwise_wheel_2(HIGH);
-    set_speed_wheel_1(200);
-    set_speed_wheel_2(200);
-    
-  }
- else{
-  set_speed_wheel_1(inches);
-  set_speed_wheel_1(inches);
-  
- }
   
 }
 
@@ -109,5 +97,5 @@ void move_base_right(){
   set_clockwise_wheel_1(LOW);
   set_clockwise_wheel_2(HIGH);
   set_speed_wheel_1(100);
-  set_speed_wheel_2(100)
+  set_speed_wheel_2(100);
 }
