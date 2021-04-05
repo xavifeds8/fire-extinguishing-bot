@@ -6,9 +6,13 @@ const int EN_W1 = 9;
 const int IN1_W2= 12;
 const int IN2_W2 = 13;
 const int EN_W2 = 11;
-#include<Servo.h>
+const int servo_pin = 2;
 
+#include <Servo.h>
+Servo myservo;
+int pos = 90;
 void setup() {
+  myservo.attach(servo_pin);
   pinMode(IN1_W1, OUTPUT);
   pinMode(IN2_W1, OUTPUT);
   pinMode(EN_W1, OUTPUT);
@@ -40,7 +44,7 @@ void loop() {
   
  }
   
-}r;;
+}
 
 int ultra_sonic(){
    long duration, inches;
@@ -76,4 +80,34 @@ void set_clockwise_wheel_2(bool dir2){
   digitalWrite(IN2_W2,!dir2);
 }
 
-void look_around()
+int look_for_space(){
+
+}
+
+void move_base_fwd(){
+  set_clockwise_wheel_1(HIGH);
+  set_clockwise_wheel_2(HIGH);
+  set_speed_wheel_1(200);
+  set_speed_wheel_2(200);
+}
+
+void move_base_back(){
+  set_clockwise_wheel_1(HIGH);
+  set_clockwise_wheel_2(HIGH);
+  set_speed_wheel_1(200);
+  set_speed_wheel_2(200);
+}
+
+void move_base_left(){
+  set_clockwise_wheel_1(HIGH);
+  set_clockwise_wheel_2(LOW);
+  set_speed_wheel_1(100);
+  set_speed_wheel_2(100);
+}
+
+void move_base_right(){
+  set_clockwise_wheel_1(LOW);
+  set_clockwise_wheel_2(HIGH);
+  set_speed_wheel_1(100);
+  set_speed_wheel_2(100)
+}

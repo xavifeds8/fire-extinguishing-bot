@@ -1,0 +1,6 @@
+{
+    "port": "COM4",
+    "board": "arduino:avr:uno",
+    "programmer": "arduino:arduinoasispatmega32u4",
+    "sketch": "ultra.ino"
+}
