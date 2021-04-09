@@ -1,56 +1,72 @@
-const int pingPin = 4; // Trigger Pin of Ultrasonic Sensor
-const int echoPin = 3; // Echo Pin of Ultrasonic Sensor
+#include <Servo.h>
+const int trigPin = 4;
+const int echoPin = 3;
 const int IN1_W1= 7;
 const int IN2_W1 = 8;
 const int EN_W1 = 9;
 const int IN1_W2= 12;
 const int IN2_W2 = 13;
 const int EN_W2 = 11;
+int dist;
+long duration;
+int distinCM;
 
-void setup() {
+Servo radarServo;
+
+void setup() 
+{
   pinMode(IN1_W1, OUTPUT);
   pinMode(IN2_W1, OUTPUT);
   pinMode(EN_W1, OUTPUT);
   pinMode(IN1_W2, OUTPUT);
   pinMode(IN2_W2, OUTPUT);
   pinMode(EN_W2, OUTPUT);
-  pinMode(pingPin, OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  Serial.begin(9600); // Starting Serial Terminal
+  Serial.begin(9600);
+  radarServo.attach(2);
+  digitalWrite(3,HIGH);
 }
 
-void loop() {
-  int inches;
-  inches = ultra_sonic();
-  Serial.print(inches);
-  Serial.print("in, ");
-  Serial.println();
-  delay(100);
-  if(inches>10){
-    move_base_fwd();
-  }
-  else{
-    move_base_left();
-  }
+void loop() 
+{
+  digitalWrite(3,HIGH);
   
-}
+  radarServo.write(0);
+  delay(200);
+  dist = ultrasonic();
+
+
+  radarServo.write(45);
+  delay(200);
+  dist = ultrasonic();
   
-
-int ultra_sonic(){
-   long duration, inches;
-   digitalWrite(pingPin, LOW);
-   delayMicroseconds(2);
-   digitalWrite(pingPin, HIGH);
-   delayMicroseconds(10);
-   digitalWrite(pingPin, LOW);
-   duration = pulseIn(echoPin, HIGH);
-   inches = microsecondsToInches(duration);
-   return inches;
- 
+  
+  radarServo.write(90);
+  delay(200);
+  dist = ultrasonic();
+  if(dist <
+  
+  radarServo.write(135);
+  delay(200);
+  dist = ultrasonic();
+  
+  radarServo.write(180);
+  delay(200);
+  dist = ultrasonic();
 }
 
-long microsecondsToInches(long microseconds) {
-   return microseconds / 74 / 2;
+
+int ultrasonic(){
+    digitalWrite(trigPin, LOW); 
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH); 
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+    duration = pulseIn(echoPin, HIGH);
+    distinCM = duration*0.034/2;
+    Serial.println(distinCM);
 }
 
 void set_speed_wheel_1(int val_1){
@@ -72,30 +88,26 @@ void set_clockwise_wheel_2(bool dir2){
 void move_base_fwd(){
   set_clockwise_wheel_1(HIGH);
   set_clockwise_wheel_2(HIGH);
-  set_speed_wheel_1(200);
-  set_speed_wheel_2(200);
+  set_speed_wheel_1(100);
+  set_speed_wheel_2(100);
 }
 void move_base_back(){
-  set_clockwise_wheel_1(LOW);
+  set_clockwise_wheel_1(LOW); 
   set_clockwise_wheel_2(LOW);
-  set_speed_wheel_1(200);
-  set_speed_wheel_2(200);
+  set_speed_wheel_1(100);
+  set_speed_wheel_2(100);
 }
 
 void move_base_left(){
   set_clockwise_wheel_1(HIGH);
   set_clockwise_wheel_2(LOW);
-  set_speed_wheel_1(200);
-  set_speed_wheel_2(200);
+  set_speed_wheel_1(100);
+  set_speed_wheel_2(100);
 }
 
 void move_base_right(){
   set_clockwise_wheel_1(LOW);
   set_clockwise_wheel_2(HIGH);
-  set_speed_wheel_1(200);
-  set_speed_wheel_2(200);
-}
-
-void search_for_path(){
-
+  set_speed_wheel_1(100);
+  set_speed_wheel_2(100);
 }
