@@ -6,10 +6,9 @@ const int IN2_W1 = 3;
 const int EN_W1 = 5;
 const int IN1_W2= 7;
 const int IN2_W2 = 8;
-int dist;
-long duration;
-int distinCM;
+float distinCM;
 Servo radarServo;
+float error;
 
 void setup() 
 {
@@ -30,46 +29,26 @@ void setup()
 
 void loop() 
 {
+  radarServo.write(90);
+  delay(500);
+  if(ultrasonic() < 20   && (radarServo.read() > 70 || radarServo.read() <120)){
+    Serial.println("move hard right");
+    move_base_back();
+    delay(500);
+    move_base_right();
+    delay(500);
+  }
   move_base_front();
-  
-  radarServo.write(0); //look right
-  if(ultrasonic() < 20){
-    move_base_left();
-    delay(50);
-    move_base_front();
-  }
-  delay(500);
-
-  
-  radarServo.write(90); //look front
-  if(ultrasonic() < 20){
-    move_base_right();
-  }
-  delay(500);
-  
-  radarServo.write(180); //look left
-  if(ultrasonic() < 20){
-    move_base_right();
-    delay(50);
-    move_base_front();
-  }
-  delay(500);
-  radarServo.write(90); //look right
-  if(ultrasonic() < 20){
-    move_base_right();
-  }
-  delay(500);
 }
 
 
-int ultrasonic(){
+float ultrasonic(){
     digitalWrite(trigPin, LOW); 
     delayMicroseconds(2);
     digitalWrite(trigPin, HIGH); 
     delayMicroseconds(10);
     digitalWrite(trigPin, LOW);
-    duration = pulseIn(echoPin, HIGH);
-    distinCM = duration*0.034/2;
+    distinCM = pulseIn(echoPin, HIGH)*0.034/2;
     Serial.println(distinCM);
     return distinCM;
 }
@@ -93,8 +72,8 @@ void set_clockwise_wheel_2(bool dir2){
 void move_base_back(){
   set_clockwise_wheel_1(HIGH);
   set_clockwise_wheel_2(HIGH);
-  set_speed_wheel_1(100);
-  set_speed_wheel_2(100);
+  set_speed_wheel_1(200);
+  set_speed_wheel_2(200);
 }
 void move_base_front (){
   set_clockwise_wheel_1(LOW); 
@@ -104,6 +83,7 @@ void move_base_front (){
 }
 
 void move_base_left(){
+
   set_clockwise_wheel_1(HIGH);
   set_clockwise_wheel_2(LOW);
   set_speed_wheel_1(200);
@@ -111,8 +91,9 @@ void move_base_left(){
 }
 
 void move_base_right(){
+
   set_clockwise_wheel_1(LOW);
   set_clockwise_wheel_2(HIGH);
-  set_speed_wheel_1(200);
-  set_speed_wheel_2(200);
+  set_speed_wheel_1(255);
+  set_speed_wheel_2(255);
 }
