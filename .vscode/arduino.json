@@ -1,3 +1,6 @@
 {
-    "port": "COM4"
+    "port": "COM4",
+    "board": "arduino:avr:uno",
+    "programmer": "arduino:arduinoisporg",
+    "sketch": "ultra\\ultra.ino"
 }
