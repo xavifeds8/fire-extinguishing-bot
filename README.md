@@ -10,4 +10,9 @@ We aim to design a robot capable of detecting and suppressing fires. This robot 
 
 ### Architectural design of the bot
 
+![WhatsApp Image 2021-08-04 at 2 01 59 PM](https://user-images.githubusercontent.com/65709700/128150663-e2b10486-64f0-4b49-a58e-9166ec942b05.jpeg)
+### Side view of the bot
+![firebot](https://user-images.githubusercontent.com/65709700/128150675-308a68ff-8659-407a-9509-7e12accb43aa.jpg)
+### Top view of the bot
+![top view](https://user-images.githubusercontent.com/65709700/128150835-1320857a-4512-4b73-91b8-7925f40809fb.jpg)
 
